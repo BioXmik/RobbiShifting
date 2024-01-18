@@ -314,7 +314,7 @@ public class Spider : MonoBehaviour {
         Vector3 newCentroid = Vector3.zero;
         float k = 0;
         for (int i = 0; i < legs.Length; i++) {
-            newCentroid += legs[i].getEndEffector().position;
+            //newCentroid += legs[i].getEndEffector().position;
             k++;
         }
         newCentroid = newCentroid / k;

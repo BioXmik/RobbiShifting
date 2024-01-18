@@ -137,14 +137,24 @@ public class CameraScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        RaycastHit hit;
-        if (Physics.Raycast(target.position, old.position - target.position, out hit, Vector3.Distance(old.position, target.position), maskObstacles))
+        float xAngle = 0;
+        if (transform.localEulerAngles.x > 90 || transform.localEulerAngles.x < 2.5f)
         {
-            cam.position = hit.point;
+            xAngle = 0.2f;
         }
         else
         {
-            cam.position = old.position;
+            xAngle = -0.2f;
+        }
+
+        RaycastHit hit;
+        if (Physics.Raycast(target.position, old.position - target.position, out hit, Vector3.Distance(old.position, target.position), maskObstacles))
+        {
+            cam.position = hit.point + new Vector3(0, xAngle, 0);
+        }
+        else
+        {
+            cam.position = old.position + new Vector3(0, xAngle, 0);
         }
     }
 }
